@@ -30,19 +30,59 @@ def parse_xml():
         responses.append(response)
 
 
+def special_command(message):
+
+    response = ''
+
+    if getcommandgroup(message) == 'whatcanyoudo':
+        response = 'I understand these commands: \n'
+        for command in commands:
+            for ver in command:
+                if ver != command[0]:
+                    response += '!' + ver + '\n'
+
+    if getcommandgroup(message) == 'greeting':
+        for response in responses:
+            if response[0] == 'greeting':
+                return response[random.randrange(1, len(response))] + ' ' + message.author.name + ' !'
+
+    return response
+
+
+def getcommandgroup(message):
+    commandgroup = 'unknown'
+    for command in commands:
+        for ver in command:
+            if message.content == ver:
+                commandgroup = command[0]
+    return commandgroup
+
+
 @client.event
 async def on_message(message):
-    if message.author == client.user:
+
+    channel = message.channel
+
+    if message.author == client.user or message.content[0] != '!':
         return
 
     message.content = message.content[1::]
 
-    for command in commands:
-        for ver in command:
-            if message.content == ver:
-                for response in responses:
-                    if response[0] == command[0]:
-                        await client.send_message(message.channel, response[random.randrange(1, len(response))])
+    if special_command(message) != '':
+        await client.send_message(channel, special_command(message))
+        return
+
+    commandgroup = getcommandgroup(message)
+
+    if commandgroup == 'unknown':
+        await client.send_message(channel, 'just read the help page for god\'s sake I\'m begging you')
+
+    for response in responses:
+        if response[0] == commandgroup:
+            await client.send_message(channel, response[random.randrange(1, len(response))])
+            return
+
+
 
 
 @client.event

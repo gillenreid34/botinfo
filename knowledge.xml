@@ -5,21 +5,42 @@
         <cmd>hi</cmd>
         <cmd>hey</cmd>
     </cmdgroup>
+
     <cmdgroup id = 'whatcanyoudo'>
-        <cmd>whatcanyoudo</cmd>
-        <cmd>what can you do</cmd>
-        <cmd>what do you know</cmd>
-        <cmd>what can i say to you</cmd>
+        <cmd>help</cmd>
+        <cmd>what can you do?</cmd>
+        <cmd>what do you know?</cmd>
+        <cmd>what can i say to you?</cmd>
     </cmdgroup>
+
+    <cmdgroup id = 'newcommand'>
+        <cmd>new command</cmd>
+    </cmdgroup>
+
+    <cmdgroup id = 'howareyou'>
+        <cmd>how are you?</cmd>
+        <cmd>wuss poppin?</cmd>
+    </cmdgroup>
+
+
     <rpnsgroup id = 'greeting'>
         <rpns>Hello</rpns>
         <rpns>Hi</rpns>
         <rpns>Hey</rpns>
         <rpns>Wuss poppin</rpns>
     </rpnsgroup>
+
+     <rpnsgroup id = 'howareyou'>
+         <rpns>I'm okay thanks</rpns>
+         <rpns>I don't have feelings</rpns>
+         <rpns>None of your business brother</rpns>
+         <rpns>A bit tired but ok</rpns>
+    </rpnsgroup>
+
+    <rpnsgroup id = 'newcommand'>
+        <rpns>Under construction</rpns>
+    </rpnsgroup>
+
     <rpnsgroup id = 'whatcanyoudo'>
-        <cmd>I'm not saying that I can do too many things to fit them all in here,
-        but I can do too many things to fit them all in here, so please visit my
-        github page: https://github.com/szabodanika/eva</cmd>
     </rpnsgroup>
 </eva>
