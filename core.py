@@ -46,6 +46,45 @@ def special_command(message):
             if response[0] == 'greeting':
                 return response[random.randrange(1, len(response))] + ' ' + message.author.name + ' !'
 
+    if getcommandgroup(message) == 'newcommand':
+        stage = 0
+        commandlist = []
+        responselist = []
+        index = message.content.index('[') + 1
+        while True:
+
+            while message.content[index] != ']':
+                temp = ''
+
+                while (message.content[index] != ',') and (message.content[index] != ']'):
+                    temp += message.content[index]
+                    index += 1
+
+                if stage == 0:
+                    commandlist.append(temp)
+                    responselist.append(temp)
+                    break
+                elif stage == 1:
+                    commandlist.append(temp)
+                elif stage == 2:
+                    responselist.append(temp)
+
+                if (index == len(message.content)) or (message.content[index] == ']'):
+                    break
+
+                index += 1
+
+            try:
+                index = message.content.index('[', (index + 1)) + 1
+            except:
+                break
+
+            stage += 1
+
+        commands.append(commandlist)
+        responses.append(responselist)
+        return 'Got it'
+
     return response
 
 
@@ -53,7 +92,7 @@ def getcommandgroup(message):
     commandgroup = 'unknown'
     for command in commands:
         for ver in command:
-            if message.content == ver:
+            if message.content.startswith(ver):
                 commandgroup = command[0]
     return commandgroup
 
@@ -81,8 +120,6 @@ async def on_message(message):
         if response[0] == commandgroup:
             await client.send_message(channel, response[random.randrange(1, len(response))])
             return
-
-
 
 
 @client.event

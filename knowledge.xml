@@ -14,7 +14,7 @@
     </cmdgroup>
 
     <cmdgroup id = 'newcommand'>
-        <cmd>new command</cmd>
+        <cmd>new command [id] [command version 1, command version 2, ... ] [response version 1, response version 2, ...] </cmd>
     </cmdgroup>
 
     <cmdgroup id = 'howareyou'>
